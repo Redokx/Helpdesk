@@ -1,0 +1,122 @@
+﻿@model Helpdesk.Models.Uzytkownik
+
+@{
+    ViewBag.Title = "Szczegóły konta";
+}
+
+
+
+<div class="container">
+    <h2>Szczegóły konta: @Html.DisplayFor(model => model.UserName)</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <ul class="detailsList">
+            Login
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.UserName)
+        </ul>
+
+        <ul class="detailsList">
+            Imię
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Imie)
+        </ul>
+
+        <ul class="detailsList">
+            Nazwisko
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Nazwisko)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Email)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Email)
+        </ul>
+
+        <ul class="detailsList">
+            Czy email potwierdzony ?
+        </ul>
+
+        <ul>
+
+            @if (Model.EmailConfirmed != null)
+            {
+@Html.DisplayFor(model => model.EmailConfirmed) }
+            else
+            {
+<a> &nbsp </a>            }
+        </ul>
+        <br />
+        <ul class="detailsList">
+            Numer telefonu
+        </ul>
+
+        <ul>
+
+            @if (Model.PhoneNumber != null)
+            {
+@Html.DisplayFor(model => model.PhoneNumber) }
+            else
+            {
+<a> &nbsp </a>            }
+        </ul>
+
+        <ul class="detailsList">
+            Data zakończenia blokady konta
+        </ul>
+        <br />
+        <ul>
+
+            @if (Model.LockoutEndDateUtc != null)
+            {
+@Html.DisplayFor(model => model.LockoutEndDateUtc) }
+            else
+            {
+<a> &nbsp </a>            }
+        </ul>
+
+        <ul class="detailsList">
+            Czy konto zablokowane ?
+        </ul>
+        <br />
+        <ul>
+
+            @if (Model.LockoutEnabled != null)
+            {
+@Html.DisplayFor(model => model.LockoutEnabled) }
+            else
+            {
+<a> &nbsp </a>            }
+        </ul>
+
+        @*<ul class="detailsList">
+            @Html.DisplayNameFor(model => model.AccessFailedCount)
+        </ul>
+
+        <ul>
+
+            @if (Model.AccessFailedCount != null)
+            {
+@Html.DisplayFor(model => model.AccessFailedCount) }
+            else
+            {
+<a> &nbsp </a>            }*@
+           
+        </ul>
+
+    </dl>
+    <p>
+        <div class="btn btnSave">@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id })  </div>
+        <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+    </p>
+</div>
+

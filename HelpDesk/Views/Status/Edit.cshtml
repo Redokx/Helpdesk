@@ -1,0 +1,46 @@
+﻿@model Helpdesk.Models.Status
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <div class="container">    
+        @using (Html.BeginForm("Edit", "Status", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <h2 class="headerInfo">Edycja statusu</h2>
+            <hr />
+            <div class="form-horizontal edit">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IdStatusu)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NazwaStatusu, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NazwaStatusu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NazwaStatusu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        <hr />
+        <div>
+            <input type="submit" value="Zapisz" class="btn btnSave" />
+        </div>
+        <div class="btn btnReturn">
+            @Html.ActionLink("Powrót do listy", "Index")
+        </div>
+        }
+    </div>
+</body>
+</html>

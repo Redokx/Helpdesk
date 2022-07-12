@@ -1,0 +1,362 @@
+﻿/*body {
+    padding-top: 0;
+    padding-bottom: 0;
+    color: black;
+    height: 100%;
+    font-family: Roboto;
+    font-family: Roboto;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+}
+
+html {
+    min-height: 100%;*/
+    /* overflow-y: scroll;*/
+/*}*/
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 200px;
+    padding-right: 200px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+/*.imgBackground {
+    background-image: url('../Image/01.jpg');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}*/
+/*.jumbotron {
+    margin-top: 40px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.hr {
+    margin-top: 200px;
+}
+
+tr:hover {
+    background-color: lightgray
+}
+
+.szeroko * input, textarea {
+    max-width: 1000px;
+}
+
+#comment {
+    margin-left: 20px;
+    box-shadow: 0 2px 0 #e6e6e6;
+    height: 200px;
+    padding-left: 10px;
+    width: 650px;
+}
+
+#tresc {
+    margin-left: 20px;
+    box-shadow: 0 2px 0 #e6e6e6;
+    height: 40px;
+    padding-left: 10px;
+    width: 500px;
+}
+
+.applicationStatusBtn {
+    float: left;
+    margin-right: 5px;
+    height: 35px;
+    width: 157px;
+    color: black !important;
+    border-radius: 3px;
+    text-align: left;
+    line-height: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.applicationBtn {
+    display: flex;
+    color: black;
+    border-radius: 3px;
+    text-align: left;
+    margin-bottom: 2px;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+    .applicationBtn:hover {
+        text-decoration: none !important;
+    }
+
+.btnDetails {
+    background-color: #468AD8;
+}
+
+
+
+.btnDelete {
+    background-color: #D84646;
+}
+
+.btnNew {
+    background-color: #73BE73;
+}
+
+.btnOpen {
+    background-color: #6CA4C8;
+}
+
+.btnPaused {
+    background-color: #CCA865;
+}
+
+.btnClosed {
+    background-color: #CC7A51;
+}
+
+.btnAll {
+    background-color: #7c3fc2;
+}
+
+.btnUser {
+    background-color: #468AD8;
+}
+
+.btnNewApplication {
+    color: #fff;
+    background-color: #296292;
+}
+
+    .btnNewApplication:hover {
+        color: #fff;
+        background-color: #517fa5;
+    }
+
+.btnSave {
+    color: #fff;
+    background-color: #296292;
+    transition: .3s;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 70px;
+}
+
+    .btnSave:hover {
+        background-color: #517fa5;
+        color: #fff;
+        text-decoration: underline;
+    }
+
+.btnEdit {
+    color: #fff;
+    background-color: #296292;
+    transition: .3s;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 70px;
+    padding-bottom:5px;
+}
+
+    .btnEdit:hover {
+        background-color: #E07572;
+        color: #fff;
+        text-decoration: underline;
+    }
+
+.btnDel {
+    color: #fff;
+    background-color: #d9534f;
+    transition: .3s;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 70px;
+    padding-bottom: 5px;
+}
+
+    .btnDel:hover {
+        background-color: #E07572;
+        color: #fff;
+        text-decoration: underline;
+    }
+
+.btnDetails {
+    color: #fff;
+    background-color: #E87A00;
+    transition: .3s;
+    padding-bottom: 5px;
+}
+
+    .btnDetails:hover {
+        background-color: #F98B11;
+        color: #fff;
+        text-decoration: underline;
+    }
+
+.fas {
+    margin-right: 15px;
+}
+
+.filters {
+    float: left;
+    color: black;
+}
+
+    .filters .fas {
+        color: white;
+    }
+
+.applicationBtn .fas {
+    color: white;
+}
+
+.applicationList .fas {
+    color: white;
+}
+
+.tableFilters {
+    
+    color: black;
+}
+
+.applicationList {
+    border: solid 1px lightgray;
+    font-size: 1.3rem;
+}
+
+table {
+    table-layout: auto;
+}
+
+.detailsList {
+    width: 200px;
+    float: left;
+    margin-right: 30px;
+    font-weight: 600;
+    border-right: solid 1px;
+    margin-left: 0;
+    color: #296292;
+}*/
+
+/*.contentsDetails
+{
+
+}*/
+
+/*.contentsDetailsInfo {
+    color: #045174;
+    font-weight: 600;
+    font-size: 1.7rem;
+    transform: translate( 1%, -190%);
+}
+
+.comments {
+    padding: 0px 20px 0px 40px;
+}
+
+.comment {
+    font-weight: 500;
+}
+
+.commentText {
+    padding-left: 40px;
+}
+
+.detailsIcon {
+    background-color: #045174;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    transform: translate(-20%, 90%);
+    text-align: center;
+    line-height: 50px;
+}
+
+.detailsIconMini {
+    background-color: #045174;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 25px;
+    transform: translate(-70%, 100%);
+    text-align: center;
+    line-height: 35px;
+}
+
+.detailsIcon > .fas {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.detailsIconMini > .fas {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.applicationLabel {
+    font-weight: 600;
+    color: #045174;
+    line-height: 35px;
+}
+
+.edit {
+    padding-left: 30px;
+}
+
+.deleteAlert {
+    display: inline;
+    background-color: #d9534f;
+    color: white;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.headerInfo {
+    display: inline;
+    background-color: #E87A00;
+    color: white;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.assignedTickets {
+    display: inline;
+    color: white;
+    padding: 6px;
+    border-radius: 5px;
+}*/

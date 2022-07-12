@@ -1,0 +1,66 @@
+﻿@model Helpdesk.Models.Komentarz
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="container">
+    <h2 class="headerInfo">Edycja komentarza id: @Html.DisplayFor(model => model.IdKomentarza)</h2>
+    <hr />
+
+     
+        @using (Html.BeginForm("Edit", "Komentarz", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal edit">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdKomentarza)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tresc, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Tresc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Tresc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataDodania, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DataDodania, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DataDodania, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Zgloszenie.IdZgloszenia,"Id zgłoszenia", htmlAttributes: new { @class = "applicationLabel col-md-3" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.IdZgloszenia, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.IdZgloszenia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UzytkownikId, "Uzytkownik", htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Uzytkownik.PelneImie, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.UzytkownikId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    <div>
+        <input type="submit" value="Zapisz" class="btn btnSave" />
+    </div>
+    <div class="btn btnReturn">
+        @Html.ActionLink("Powrót do listy", "Index")
+    </div>
+</div>
+    }
+    
+   
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

@@ -1,0 +1,65 @@
+﻿@model Helpdesk.Models.Komentarz
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container">
+    <h2 class="headerInfo">Usuwanie komentarza</h2>
+    <br /><br />
+    <h3 class="deleteAlert">Czy na pewno chcesz usunąć ten komentarz?</h3>
+    <div>
+        <div>
+            <hr />
+            <ul class="detailsList">
+                Imię i nazwisko:
+            </ul>
+
+            <ul>
+                @Html.DisplayFor(model => model.Uzytkownik.PelneImie)
+            </ul>
+
+            <ul class="detailsList">
+                Id zgłoszenia
+            </ul>
+
+            <ul>
+                @Html.DisplayFor(model => model.Zgloszenie.IdZgloszenia)
+            </ul>
+
+            <ul class="detailsList">
+                @Html.DisplayNameFor(model => model.Zgloszenie.Temat)
+            </ul>
+
+            <ul>
+                @Html.DisplayFor(model => model.Zgloszenie.Temat)
+            </ul>
+
+            <ul class="detailsList">
+                @Html.DisplayNameFor(model => model.Tresc)
+            </ul>
+
+            <ul>
+                @Html.DisplayFor(model => model.Tresc)
+            </ul>
+
+            <ul class="detailsList">
+                @Html.DisplayNameFor(model => model.DataDodania)
+            </ul>
+
+            <ul>
+                @Html.DisplayFor(model => model.DataDodania)
+            </ul>
+        </div>
+
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+                <input type="submit" value="Usuń" class="btn btnDel" />
+            </div>
+            <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+        }
+    </div>
+</div>

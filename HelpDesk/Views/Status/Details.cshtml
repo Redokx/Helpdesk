@@ -1,0 +1,37 @@
+﻿@model Helpdesk.Models.Status
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2 class="headerInfo">Szczegóły statusu</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.NazwaStatusu)
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.NazwaStatusu)
+                </ul>
+
+            </dl>
+
+            <hr />
+        </div>
+
+        <div class="btn btnSave">@Html.ActionLink("Edytuj", "Edit", new { id = Model.IdStatusu })</div>
+        <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+    </div>
+</body>
+</html>

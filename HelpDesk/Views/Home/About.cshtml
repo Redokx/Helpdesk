@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "O nas";
+}
+<div class="container">
+    @if (TempData["Potwierdzenie"] != null)
+    {
+<div class="alert alert-info" role="alert">
+    @TempData["Potwierdzenie"]
+</div>}
+</div>

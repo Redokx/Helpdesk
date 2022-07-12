@@ -1,0 +1,207 @@
+﻿@model Helpdesk.Models.Zgloszenie
+
+@{ ViewBag.Title = "Details"; }
+<div class="container">
+    <h2 class="headerInfo">Szczegóły zgłoszenia ID: @Html.DisplayFor(model => model.IdZgloszenia)</h2>
+  
+    
+    <div class="row">
+
+
+
+        <div class="col">
+            <br />
+            @if (User.IsInRole("Admin") || User.IsInRole("Pracownik") || User.IsInRole("Kierownik"))
+            {
+
+                <i class="btn btnEdit">@Html.ActionLink("Edytuj zgłoszenie", "Edit", new { id = Model.IdZgloszenia })</i>
+                <br />
+            }
+            <div class="col">
+                <div class="detailsIcon"><i class="fas fa-info"></i></div>
+
+                <ul class="contentsDetailsInfo">
+                    Informacje
+                </ul> 
+                <h3>@Html.DisplayNameFor(model => model.Temat): @Html.DisplayFor(model => model.Temat)</h3>
+                <hr>
+                <ul class="detailsList">
+                    Użytkownik
+                </ul>
+
+                <ul>
+
+                    @Html.DisplayFor(model => model.Uzytkownik.PelneImie)
+                </ul>
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.Uzytkownik.Email) kontaktowy
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.Uzytkownik.Email)
+                </ul>
+
+
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.PracownikId) pracownik
+                </ul>
+
+                <ul>
+                    @if (Model.PracownikId != null)
+                    {
+                        @Html.DisplayFor(model => model.Pracownik.PelneImie)
+                    }
+                    else
+                    {
+                        <a> &nbsp </a>
+                    }
+                </ul><br />
+
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.Status)
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.Status.NazwaStatusu)
+                </ul>
+
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.IdPriorytet)
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.Priorytet.NazwaPriorytetu)
+                </ul>
+
+
+
+
+
+
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.Kategoria.NazwaKategorii)
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.Kategoria.NazwaKategorii)
+                </ul>
+
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.DataDodania)
+                </ul>
+                <ul>
+                    @Html.DisplayFor(model => model.DataDodania)
+                </ul>
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.DataAktualizacji)
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.DataAktualizacji)
+                </ul>
+
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.Grafika)
+                </ul>
+
+
+                <div class="" style="margin-bottom:20px;">
+                    @if (Model.Grafika != null)
+                    {
+                        <img src="@Url.Content("~/Grafika/" +Model.Grafika)" /> }
+
+                    else
+                    {
+                        <a>&nbsp</a>
+                    }
+                </div>
+
+
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.Plik)
+                </ul>
+
+
+                <div class=" d-block" style="margin-bottom:20px;">
+                    @if (Model.Plik != null)
+                    {
+                        @Html.ActionLink("Pobierz plik", "DownloadFile", new { fileName = Model.Plik })
+                    }
+                    else
+                    {
+                        <a> &nbsp </a>
+                    }
+                </div>
+
+
+            </div>
+            <div class="contentsDetails">
+                <div class="detailsIcon"><i class="fas fa-file-alt"></i></div>
+
+                <ul class="contentsDetailsInfo">
+                    @Html.DisplayNameFor(model => model.Tresc)
+                </ul>
+                <hr />
+                <ul>
+                    @Html.Raw(Model.Tresc)
+
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<hr />
+<div class="container" style="margin-top:20px;">
+    <div class="row">
+
+        <div class="col">
+
+
+            <div class="detailsIcon"><i class="fas fa-comments"></i></div>
+
+            <ul class="contentsDetailsInfo">
+                Komentarze
+            </ul>
+            <hr />
+            <div class="comments">
+                @if (Model != null)
+                {
+                    foreach (var item in Model.Komentarz.OrderBy(c => c.IdKomentarza))
+                    {
+                        <div class="detailsIconMini">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <ul class="comment">
+                            @Html.DisplayFor(modelItem => item.Uzytkownik.PelneImie)
+                            @Html.DisplayFor(modelItem => item.DataDodania)
+                        </ul>
+                        <ul class="commentText">
+                            @Html.DisplayFor(modelItem => item.Tresc)
+                        </ul>
+                    }
+                }
+            </div>
+            <br />
+
+            <p>
+                @if (Request.IsAuthenticated)
+                {
+                    if (@Model.IdStatusu != 6)
+                    {
+
+                    @Html.Action("PartialCreate", "Komentarz", new { id = Model.IdZgloszenia })
+                    }
+                }
+
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="/path/to/dist/css/image-zoom.css" />
+<script src="/path/to/dist/js/image-zoom.min.js"></script>

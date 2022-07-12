@@ -1,0 +1,99 @@
+﻿@using Helpdesk.Models
+@model LoginViewModel
+@{ Layout = null; }
+<link href="~/Content/css/styles.css" rel="stylesheet" />
+<link href="~/Content/css/remixicon.css" rel="stylesheet" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="~/Content/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="~/Content/favicon/favicon-16x16.png">
+<link rel="manifest" href="~/Content/favicon/site.webmanifest">
+<!-- FAVICON -->
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/ckeditor")
+@Styles.Render("~/Content/datepicker")
+@Scripts.Render("~/bundles/datePicker")
+<div class="container">
+    <div class="row ">
+        <h2>@ViewBag.Title</h2>
+        <div class="container-fluid body-content ">
+            <div class="jumbotron vertical-center">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-12">
+                        <section id="loginForm align-self-center">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                @Html.AntiForgeryToken()
+                                <section class="vh-100">
+                                    <div class="container-fluid h-custom">
+                                        <div class="row d-flex justify-content-center align-items-center h-100">
+                                            <div class="col-md-9 col-lg-6 col-xl-5">
+                                                <img src="~/Content/favicon/android-chrome-512x512.png" class="img-fluid" alt="Sample image">
+                                            </div>
+                                            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                                                <form>
+                                                    <h2>HelpDesk</h2>
+
+                                                    <h5>Zaloguj się:</h5>
+                                                    
+                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                                    <!-- Login input -->
+                                                    <div class="form-outline mb-4 ">
+                                                        @Html.LabelFor(m => m.UserName, new { @class = "" })
+                                                        <div class="col-md-10">
+                                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-control-lg", @id = "form3Example3", @hint = "Login" })
+                                                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <!-- Password input -->
+                                                    <div class="form-outline mb-3">
+                                                        @Html.LabelFor(m => m.Password, new { @class = " " })
+                                                        <div class="  col-md-10">
+                                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", @hint = "Hasło" })
+                                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <!-- Checkbox -->
+                                                        <div class="mb-0">
+                                                            <div class="checkbox form-check-label">
+                                                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-label" })
+                                                                @Html.LabelFor(m => m.RememberMe)
+                                                            </div>
+                                                        </div>
+                                                        <div class="">
+                                                            <div class="">
+                                                                @Html.ActionLink("Zapomniałeś hasła?", "ForgotPassword")
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="text-center text-lg-start mt-4 pt-2">
+                                                        <div class="form-group">
+                                                            <div class="col-md-offset-2 col-md-10">
+                                                                <input type="submit" value="Zaloguj" class="btn btn-success" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section> @*<div class="btn btnNewApplication">
+                                                     @Html.ActionLink("Zarejestruj się jako nowy użytkownik", "Register")
+                                                    </div>*@}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

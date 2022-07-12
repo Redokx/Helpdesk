@@ -1,0 +1,31 @@
+﻿@model Helpdesk.Models.Priorytet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+
+<div class="container">
+    <div>
+        <h2 class="headerInfo">Szczegóły statusu</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <ul class="detailsList">
+                @Html.DisplayNameFor(model => model.NazwaPriorytetu)
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.NazwaPriorytetu)
+                </ul>
+
+        </dl>
+    </div>
+    <p>
+        <div class="btn btnSave">@Html.ActionLink("Edytuj", "Edit", new { id = Model.IdPriorytetu }) </div>
+        <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+    </p>
+    </div>

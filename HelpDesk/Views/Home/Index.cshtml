@@ -1,0 +1,313 @@
+﻿ 
+@{ ViewBag.Title = "Home Page"; }
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="~/App_Data/Chart.js-2.9.4/dist/Chart.js"></script>
+<script src="~/Scripts/ZgloszeniaRaport.js"></script>
+<style>
+    #chart_container {
+        width: 800px;
+        height: 800px;
+    }
+
+    #chart_container2 {
+        width: 800px;
+        height: 800px;
+    }
+
+    .col1 {
+        border: 1px solid grey;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .crow {
+        align-content: center;
+    }
+</style>
+
+<div class="container">
+    <div class="crow>">
+        <h2>Witaj @Html.DisplayFor(x => User.Identity.Name)!   </h2>
+        <h3>Twoje zgłoszenia:</h3>
+        <br />
+    </div>
+
+    <div class="row">
+        <div class="col1  col-md-4 ">
+            @if (User.IsInRole("Autor"))
+            {
+<a>Liczba zgłoszeń:</a>}
+
+            @if (User.IsInRole("Admin") || (User.IsInRole("Pracownik") || (User.IsInRole("Kierownik"))))
+            {
+<a>Przypisane:</a>}
+
+            <br />
+            @Html.ViewBag.UserPrzypisane
+        </div>
+
+        <div class="col1 col-md-4 ">
+            Nowe:
+            <br />
+            @Html.ViewBag.UserNowe
+        </div>
+        <div class="col1 col-md-4 ">
+            Otwarte:
+            <br />
+            @Html.ViewBag.UserOtwarte
+        </div>
+        @if (User.IsInRole("Admin") || (User.IsInRole("Pracownik") || (User.IsInRole("Kierownik"))))
+        {
+<div class="col1 col-md-4 ">
+    Oczekujące na odpowiedź:
+    <br />
+    @Html.ViewBag.UserOczekujace
+</div>}
+        <div class="col1 col-md-4  ">
+            Wstrzymane:
+            <br />
+            @Html.ViewBag.UserWstrzymane
+        </div>
+        <div class="col1 col-md-4 ">
+            Zakmnięte:
+            <br />
+            @Html.ViewBag.UserZakonczone
+        </div>
+        @if (User.IsInRole("Autor"))
+        {
+<div class="col1 col-md-4 ">
+    Anulowane:
+    <br />
+    @Html.ViewBag.UserAnulowane
+</div>}
+        <br />
+
+        @if (User.IsInRole("Autor"))
+        {
+<div class="col col-md-12 my-3">
+    <canvas id="bar_chart"></canvas>
+    <script>
+                var repArray = @Html.Raw(Json.Encode(ViewBag.Rep));
+                var statusy = @Html.Raw(Json.Encode(ViewBag.labNowe));
+                var nowe = @Html.Raw(Json.Encode(ViewBag.repNowe));
+                var ctx = document.getElementById('bar_chart').getContext('2d');
+                    var bacChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Zgłoszenia'],
+                            datasets: [{
+                                    label: 'Zgłoszone',
+                                    data:  [@Html.Raw(ViewBag.UserPrzypisane) ],
+                                    backgroundColor: ["rgba(13,16,5, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(13,16,5, .8"],
+                                    borderWidth: 1,
+                                    order: 1
+                                },
+                                {
+                                    label: 'Nowe',
+                                    data:  [@Html.Raw(ViewBag.UserNowe)],
+                                    backgroundColor: ["rgba(102,215,54, .8", ],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(102,215,54, .8",],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Otwarte',
+                                    data:  [@Html.Raw(ViewBag.UserOtwarte)],
+                                    backgroundColor: ["rgba(242,166,54, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(242,166,54, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Wstrzymane',
+                                    data:  [@Html.Raw(ViewBag.UserWstrzymane)],
+                                    backgroundColor: ["rgba(255,0,0, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(255,0,0, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Zakmnięte',
+                                    data:  [@Html.Raw(ViewBag.UserZakonczone)],
+                                    backgroundColor: ["rgba(21,166,54, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(21,166,54, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Anulowane',
+                                    data:  [@Html.Raw(ViewBag.UserAnulowane)],
+                                    backgroundColor: ["rgba(21,16,54, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(21,16,54, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                }
+                            ]
+                        },
+                        options: {
+                            mantainAspectRatio:false,
+                            scales: { yAxes: [{ ticks: { beginAtZero: true } }] }
+                        }
+                    });
+    </script>
+</div>}
+
+
+        @if (User.IsInRole("Admin") || (User.IsInRole("Pracownik") || (User.IsInRole("Kierownik"))))
+        {
+
+<div class="col col-md-12 my-3">
+    <canvas id="bar_chart"></canvas>
+    <script>
+                var repArray = @Html.Raw(Json.Encode(ViewBag.Rep));
+                var statusy = @Html.Raw(Json.Encode(ViewBag.labNowe));
+                var nowe = @Html.Raw(Json.Encode(ViewBag.repNowe));
+                var ctx = document.getElementById('bar_chart').getContext('2d');
+                    var bacChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Twoje zgłoszenia'],
+                            datasets: [{
+                                    label: 'Przypisane',
+                                    data:  [@Html.Raw(ViewBag.UserPrzypisane) ],
+                                    backgroundColor: ["rgba(13,16,5, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(13,16,5, .8"],
+                                    borderWidth: 1,
+                                    order: 1
+                                },
+                                {
+                                    label: 'Nowe',
+                                    data:  [@Html.Raw(ViewBag.UserNowe)],
+                                    backgroundColor: ["rgba(102,215,54, .8", ],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(102,215,54, .8",],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Otwarte',
+                                    data:  [@Html.Raw(ViewBag.UserOtwarte)],
+                                    backgroundColor: ["rgba(54,112,255, .8",],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(54,112,255, .8",],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Oczekujące na odpowiedź',
+                                    data:  [@Html.Raw(ViewBag.UserOczekujace)],
+                                    backgroundColor: ["rgba(242,166,54, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(242,166,54, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Wstrzymane',
+                                    data:  [@Html.Raw(ViewBag.UserWstrzymane)],
+                                    backgroundColor: ["rgba(255,0,0, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(255,0,0, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Zakmnięte',
+                                    data:  [@Html.Raw(ViewBag.UserZakonczone)],
+                                    backgroundColor: ["rgba(21,166,54, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(21,166,54, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                }
+
+                            ]
+                        },
+                        options: {
+                            mantainAspectRatio:false,
+                            scales: { yAxes: [{ ticks: { beginAtZero: true } }] }
+                        }
+                    });
+    </script>
+</div>
+
+                <h3>Wszystkie zgłoszenia:</h3>
+                                <div class="col col-md-12 my-3">
+                                    <canvas id="bar_chart2"></canvas>
+                                    <script>
+                var repArray2 = @Html.Raw(Json.Encode(ViewBag.Rep));
+                var statusy2 = @Html.Raw(Json.Encode(ViewBag.labNowe));
+                var nowe2 = @Html.Raw(Json.Encode(ViewBag.repNowe));
+                var otwarte2 = @Html.Raw(Json.Encode(ViewBag.otwarte));
+                var ctx2 = document.getElementById('bar_chart2').getContext('2d');
+                    var bacChart2 = new Chart(ctx2, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Wszystkie zgłoszenia'],
+                            datasets: [{
+                                    label: 'Nowe',
+                                    data:  [@Html.Raw(ViewBag.repNowe) ],
+                                backgroundColor: ["rgba(102,215,54, .8",],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                hoverBackgroundColor: ["rgba(102,215,54, .8",],
+                                    borderWidth: 1,
+                                    order: 1
+                                },
+                                {
+                                    label: 'Otwarte',
+                                    data:  [@Html.Raw(ViewBag.repOtwarte)],
+                                    backgroundColor: ["rgba(54,112,255, .8", ],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(54,112,255, .8",],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Oczekujące',
+                                    data:  [@Html.Raw(ViewBag.repOczekujace)],
+                                    backgroundColor: ["rgba(242,166,54, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(242,166,54, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                },
+                                {
+                                    label: 'Wstrzymane',
+                                    data:  [@Html.Raw(ViewBag.repWstrzymane)],
+                                    backgroundColor: ["rgba(255,0,0, .8"],
+                                    borderColor: ["rgba(0, 0, 0, .3"],
+                                    hoverBackgroundColor: ["rgba(255,0,0, .8"],
+                                    borderWidth: 1,
+                                    order: 2
+                                }
+                            ]
+                        },
+                        options: {
+                            mantainAspectRatio:false,
+                            scales: { yAxes: [{ ticks: { beginAtZero: true } }] }
+                        }
+                    });
+                                    </script>
+                                </div>}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

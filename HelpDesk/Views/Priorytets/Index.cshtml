@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Helpdesk.Models.Priorytet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@if (TempData["Potwierdzenie"] != null)
+{
+<div class="alert alert-info" role="alert">
+    @TempData["Potwierdzenie"]
+</div>}
+
+<div class="container">
+    <h2 class="headerInfo">Priorytety</h2><hr />
+    <div class="btn btnNewApplication">
+        <i class="fas fa-plus"></i>
+        @Html.ActionLink("Utwórz nowy priorytet", "Create")
+    </div><br /><br />
+
+    <table class="table col-auto table-hover">
+        <tr>
+            <th class="tableFilters">
+                @Html.DisplayNameFor(model => model.NazwaPriorytetu)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="applicationList">
+                    @Html.DisplayFor(modelItem => item.NazwaPriorytetu)
+                </td>
+
+                <td width="10%" class="applicationList">
+                    <div class="btn btnDetails">@Html.ActionLink("Szczegóły", "Details", new { id = item.IdPriorytetu }) </div>
+                    <div class="btn btnEdit">@Html.ActionLink("Edycja", "Edit", new { id = item.IdPriorytetu }) </div>
+                    @*<div class="btn btnDelete">@Html.ActionLink("Usuń", "Delete", new { id = item.IdPriorytetu })</div>*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

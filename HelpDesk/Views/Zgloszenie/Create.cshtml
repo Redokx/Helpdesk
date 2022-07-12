@@ -1,0 +1,95 @@
+﻿@model Helpdesk.Models.Zgloszenie
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="container">
+    <h2 class="headerInfo">Tworzenie zgłoszenia</h2>
+    @if (ViewBag.Blad == true)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Komunikat
+        </div>
+    }
+
+
+    @using (Html.BeginForm("Create", "Zgloszenie", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Temat, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Temat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Temat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdKategorii, "Kategoria", htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdKategorii", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdKategorii, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdPriorytet, "Priorytet", htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdPriorytet", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdPriorytet, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Grafika, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            <input type="file" id="obrazek" name="obrazek" accept=".jpg,.gif,.png,.jpeg" class="btn btn-default" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Plik, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+        <div class="col-md-10">
+            <input type="file" id="zalacznik" name="zalacznik" class="btn btn-default" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tresc, htmlAttributes: new { @class = "applicationLabel col-md-4" })
+        
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Tresc, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(model => model.Tresc, "", new { @class = "text-danger" })
+             
+            </div>
+    </div>
+     Treść zgłoszenia nie powinna przekroczyć 2000 znaków !
+    <hr />
+
+    <div>
+        <input type="submit" value="Dodaj zgłoszenie" class="btn btnSave" />
+    </div>
+</div>
+    }
+
+    <div class="btn btnReturn">
+        @Html.ActionLink("Powrót do listy", "Index")
+    </div>
+</div>
+   
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript">
+            var editor = CKEDITOR.instances['Tresc'];
+            if (editor) { editor.destroy(true); }
+            CKEDITOR.replace('Tresc', {
+                enterMode: CKEDITOR.ENTER_BR,
+            });
+        </script>
+
+    

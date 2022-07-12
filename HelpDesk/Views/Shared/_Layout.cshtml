@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png" />
+    <title>Helpdesk</title>
+
+    <link href="~/Content/css/styles.css" rel="stylesheet" />
+
+    <!-- Remixicon-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <!-- BOOTSTRAP JS -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/ckeditor")
+    @Styles.Render("~/Content/datepicker")
+    @Scripts.Render("~/bundles/datePicker")
+    @RenderSection("scripts", required: false)
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/favicon/site.webmanifest">
+    <!-- FAVICON -->
+    @*<link href="~/Content/sidebar-themes.css" rel="stylesheet" />*@
+
+    @*@RenderSection("scripts", required: false)*@
+</head>
+<body>
+
+    <div class="layout has-sidebar fixed-sidebar fixed-header">
+        @if (Request.IsAuthenticated)
+        {
+<aside id="sidebar" class="sidebar break-point-lg has-bg-image">
+    @*<div class="image-wrapper">
+            <img src="assets/images/sidebar-bg.jpg" alt="sidebar background" />
+        </div>*@
+    <div class="sidebar-layout">
+        <div class="sidebar-header">
+            <span style="
+                text-transform: uppercase;
+                font-size: 15px;
+                letter-spacing: 3px;
+                font-weight: bold;
+                color:white;">@Html.ActionLink("Helpdesk", "Index", "Home", new { area = "" }, new { @class = "sidebar-header", style = "color: white" })</span>
+            </div>
+            
+            <div class="sidebar-header">
+
+                <div class=" " style="margin-top:0px;">
+
+                    <span class="user-name">
+                        <span>Zalogowany:</span>
+                        @if (Request.IsAuthenticated)
+                        {
+                <a>@Html.ActionLink(User.Identity.Name.ToString(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" , style = "color: white"})</a>}
+                    </span>
+                    @*<span class="user-role">
+                        @if (User.IsInRole("Admin"))
+                        {<br /><span>Administrator</span>}
+                        @if (User.IsInRole("Kierownik"))
+                        {<br /><span>Kierownik IT</span>}
+                        @if (User.IsInRole("Pracownik"))
+                        {<br /><span>Specjalista ds. IT</span>}
+                        @if (User.IsInRole("Autor"))
+                        {<br /><span>Użytkownik</span>}
+                    </span>*@
+                </div>
+
+            </div>
+            <div class="sidebar-content">
+
+                <nav class="menu open-current-submenu">
+                    <ul>
+                        @if (User.IsInRole("Admin"))
+                        {
+                    <li class="menu-item sub-menu">
+                        <a href="#">
+                            <span class="menu-icon">
+                                <i class="ri-ink-bottle-fill"></i>
+                            </span>
+                            <span class="menu-title">Admin</span>
+                        </a>
+                        <div class="sub-menu-list">
+                            <ul>
+                                <li class="menu-item">
+                                    @Html.ActionLink("Użytkownicy", "Index", "Uzytkowniks")
+                                </li>
+                                <li class="menu-item">
+                                    @Html.ActionLink("Kategorie", "Index", "Kategoria")
+                                </li>
+                                <li class="menu-item">
+                                    @Html.ActionLink("Statusy", "Index", "Status")
+                                </li>
+                                <li class="menu-item">
+                                    @Html.ActionLink("Priorytety", "Index", "Priorytets")
+                                </li>
+                                <li class="menu-item">
+                                    @Html.ActionLink("Komentarze", "Index", "Komentarz")
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+}
+                        <li class="menu-item">
+                            <a href="@Url.Action("Create", "Zgloszenie")">
+                                <span class="menu-icon">
+                                    <i class="ri-book-2-fill"></i>
+                                </span>
+                                <span class="menu-title">Utwórz zgłoszenie</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="@Url.Action("Index", "Zgloszenie")">
+                                <span class="menu-icon">
+                                    <i class="ri-calendar-fill"></i>
+                                </span>
+                                <span class="menu-title">Zgłoszenia</span>
+                            </a>
+                        </li>
+                        
+                        @if ((User.IsInRole("Admin")) || (User.IsInRole("Kierownik")))
+                        {
+                    <li class="menu-item sub-menu">
+                        <a href="#">
+                            <span class="menu-icon">
+                                <i class="ri-ink-bottle-fill"></i>
+                            </span>
+                            <span class="menu-title">Raporty</span>
+                        </a>
+                        <div class="sub-menu-list">
+                            <ul>
+                                <li class="menu-item">
+                                    <a href="#" onclick="window.location.href='../Reports/Nowe.aspx'">
+                                        <span class="menu-icon">
+                                            <i class="ri-git-repository-fill"></i>
+                                        </span>
+                                        <span class="menu-title">Zgłoszenia - Nowe</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#" onclick="window.location.href='../Reports/Otwarte.aspx'">
+                                        <span class="menu-icon">
+                                            <i class="ri-git-repository-fill"></i>
+                                        </span>
+                                        <span class="menu-title">Zgłoszenia - Otwarte</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#" onclick="window.location.href='../Reports/Oczekujace.aspx'">
+                                        <span class="menu-icon">
+                                            <i class="ri-git-repository-fill"></i>
+                                        </span>
+                                        <span class="menu-title">Zgłoszenia - Oczekujące</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#" onclick="window.location.href='../Reports/Zamkniete.aspx'">
+                                        <span class="menu-icon">
+                                            <i class="ri-git-repository-fill"></i>
+                                        </span>
+                                        <span class="menu-title">Zgłoszenia - Zamkniete</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#" onclick="window.location.href='../Reports/Anulowane.aspx'">
+                                        <span class="menu-icon">
+                                            <i class="ri-git-repository-fill"></i>
+                                        </span>
+                                        <span class="menu-title">Zgłoszenia - Anulowane</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+}
+
+                        <li class="menu-item">
+                            <a href="@Url.Action("Contact", "Home")">
+                                <span class="menu-icon">
+                                    <i class="ri-lightbulb-line"></i>
+                                </span>
+                                <span class="menu-title">Pomoc</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!--FOOTER-->
+            <div class=" ">
+                <nav class="menu open-current-submenu">
+                    <ul>
+                        <li class="menu-item sub-menu">
+                            <a href="#">
+                                <span class="menu-icon">
+                                    <i class="ri-settings-3-line"></i>
+                                </span>
+                                <span class="menu-title">Konto</span>
+                            </a>
+                            <div class="sub-menu-list">
+                                <ul>
+                                    <li class="menu-item">
+
+                                        <a class="" href="@Url.Action("Index", "Manage")">Zarządzaj kontem</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                        {
+                                        @Html.AntiForgeryToken() if (Request.IsAuthenticated)
+                                        {
+                                         <a class="menu-item" href="javascript:document.getElementById('logoutForm').submit()">
+                                             Wyloguj
+                                         </a>
+                                         }
+                                         }
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <span>&copy; @DateTime.Now.Year - Helpdesk</span>
+            </div>
+
+        </div>
+    </aside>
+    }
+        <!--BODY-->
+        <div id="overlay" class="overlay"></div>
+        <div class="layout">
+            <header class="header">
+                <a id="btn-collapse" href="#">
+                    <i class="ri-menu-line ri-xl"></i>
+                </a>
+                <a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg">
+                    <i class="ri-menu-line ri-xl"></i>
+                </a>
+            </header>
+            <main class="content col-10 offset-1">
+                @RenderBody()
+            </main>
+
+        </div>
+    </div>
+    <script src="~/Content/script/main2.js"></script>
+</body>
+
+</html>

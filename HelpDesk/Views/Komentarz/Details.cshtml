@@ -1,0 +1,52 @@
+﻿@model Helpdesk.Models.Komentarz
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <h2 class="headerInfo">Szczegóły komentarza: @Html.DisplayFor(model => model.IdKomentarza)</h2>
+    <div>
+        <hr />
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Uzytkownik)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Uzytkownik.PelneImie)
+        </ul>
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.IdZgloszenia)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.IdZgloszenia)
+        </ul>
+        <br />
+        <ul class="detailsList">
+            Tytuł zgłoszenia
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Zgloszenie.Temat)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Tresc)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Tresc)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.DataDodania)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.DataDodania)
+        </ul>
+    </div>
+    <hr />
+    <div class="btn btnSave">@Html.ActionLink("Edytuj", "Edit", new { id = Model.IdKomentarza })</div>
+    <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+</div>

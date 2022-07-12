@@ -1,0 +1,33 @@
+﻿@model Helpdesk.Models.Kategoria
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <h2 class="headerInfo">Szczegóły kategorii</h2>
+
+    <div>
+        <hr />
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.NazwaKategorii)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.NazwaKategorii)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.OpisKategorii)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.OpisKategorii)
+        </ul>
+    </div>
+    <hr />
+        @if (User.IsInRole("Admin"))
+        {
+    <div class="btn btnSave">@Html.ActionLink("Edytuj", "Edit", new { id = Model.IdKategorii })</div>
+        }
+    <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+        </div>

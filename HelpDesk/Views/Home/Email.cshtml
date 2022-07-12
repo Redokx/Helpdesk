@@ -1,0 +1,21 @@
+﻿
+@{ ViewBag.Title = "O nas"; }
+<div class="container">
+    <div class="row">
+        <h2>@ViewBag.Title.</h2>
+       
+            Emails:
+            @if (TempData["Potwierdzenie"] != null)
+            {
+                
+                var lista = TempData["Potwierdzenie"] as List<string>;
+
+            <div class="alert alert-info" role="alert">
+                 @foreach(var item in lista)
+                    {
+                        <p>@item</p>
+                    }
+            </div>
+            }
+    </div>
+</div>

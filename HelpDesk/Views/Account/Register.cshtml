@@ -1,0 +1,63 @@
+﻿@model Helpdesk.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Utwórz nowe konto użytkownika";
+}
+<div class="container">
+    <h2 class="headerInfo">@ViewBag.Title</h2>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 applicationLabel" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName,"Login", new { @class = "col-md-2 applicationLabel" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Imie, new { @class = "col-md-2 applicationLabel" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Imie, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nazwisko, new { @class = "col-md-2 applicationLabel" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Nazwisko, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 applicationLabel" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 applicationLabel" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+
+            <hr />
+            <div>
+                <input type="submit" class="btn btnSave" value="Zarejestruj" />
+            </div>
+            <div class="btn btnReturn"><a href="javascript:history.back()">Powrót</a></div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

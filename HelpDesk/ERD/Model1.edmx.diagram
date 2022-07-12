@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f448cefa42e443059ba08f6eb865a429" Name="Diagram1">
+        <EntityTypeShape EntityType="helpdeskSQLModel.C__MigrationHistory" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.AspNetRoles" Width="1.5" PointX="4.875" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.AspNetUserClaims" Width="1.625" PointX="6.875" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.AspNetUserLogins" Width="1.75" PointX="4.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.AspNetUsers" Width="2" PointX="6.875" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.Kategoria" Width="1.5" PointX="12.625" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.Komentarz" Width="1.5" PointX="12.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.Priorytet" Width="1.5" PointX="12.625" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.Status" Width="1.5" PointX="12.625" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.Uzytkownik" Width="2" PointX="9.875" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="helpdeskSQLModel.Zgloszenie" Width="1.5" PointX="10" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Uzytkownik_dbo_AspNetUsers_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Zgloszenie_dbo_Status_IdStatusu" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId" ManuallyRouted="false" />
+        <AssociationConnector Association="helpdeskSQLModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

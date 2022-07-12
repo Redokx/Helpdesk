@@ -1,0 +1,192 @@
+﻿@model Helpdesk.Models.Zgloszenie
+
+@{ ViewBag.Title = "Edit"; }
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Content/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#searchText').autocomplete({
+            source: '@Url.Action("Search")'
+            });
+    })
+</script>
+
+<div class="col-8 offset-2">
+    <div>
+        <h2 class="headerInfo">Edycja zgłoszenia ID: @Html.DisplayFor(model => model.IdZgloszenia)</h2>
+        @if (ViewBag.Blad == true)
+        {
+<div class="alert alert-danger" role="alert">
+    @ViewBag.Komunikat
+</div>}
+
+
+        @using (Html.BeginForm("Edit", "Zgloszenie", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+@Html.AntiForgeryToken()
+
+    <div class="form-horizontal edit">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdZgloszenia)
+        @Html.HiddenFor(model => model.DataDodania)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Temat, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Temat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Temat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PracownikId, "Przypisany pracownik", htmlAttributes: new { @class = "applicationLabel col-md-3" })
+            <div class="col-md-10">
+                @Html.DropDownList("PracownikId", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.PracownikId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdStatusu, "Status", htmlAttributes: new { @class = "applicationLabel col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdStatusu", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.IdStatusu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdPriorytet, "Priorytet", htmlAttributes: new { @class = "applicationLabel col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdPriorytet", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.IdPriorytet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UzytkownikId, htmlAttributes: new { @class = "applicationLabel col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UzytkownikId", null, htmlAttributes: new { @class = "  form-select" })
+                @Html.ValidationMessageFor(model => model.UzytkownikId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdKategorii, "Kategoria", htmlAttributes: new { @class = "applicationLabel col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdKategorii", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.IdKategorii, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tresc, htmlAttributes: new { @class = "applicationLabel col-md-3" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Tresc, new { @class = "ckeditor" })
+                @Html.ValidationMessageFor(model => model.Tresc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Grafika, htmlAttributes: new { @class = "applicationLabel col-md-3" })
+            @Html.TextBoxFor(m => m.Grafika, new { style = "display: none;" })
+            <div class="col-md-10">
+                @if (Model.Grafika != null)
+                {
+    <img src="@Url.Content("~/Grafika/Mini/" +Model.Grafika)" class="img-responsive" />
+                        <div class="clear"></div>}
+                <input type="file" id="obrazek" name="obrazek" accept=".jpg,.gif,.png,.jpeg" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Plik, htmlAttributes: new { @class = "applicationLabel col-md-3" })
+            @Html.TextBoxFor(m => m.Plik, new { style = "display: none;" })
+            <div class=" d-block" style="margin-bottom:20px;">
+                @if (Model.Plik != null)
+                {
+
+    @Html.DisplayFor(m => m.Plik, new { fileName = Model.Plik });
+}
+else
+{
+    <a> &nbsp </a>}
+            </div>
+            <input type="file" id="zalacznik" name="zalacznik" class="btn btn-default" />
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataDodania, htmlAttributes: new { @class = "applicationLabel col-md-3" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DataDodania, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.DataDodania, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataZakonczenia, htmlAttributes: new { @class = "applicationLabel col-md-3" })
+            <div class="col-md-10">
+                @Html.Raw(ViewBag.DataZakonczenia)
+                @Html.TextBoxFor(model => model.DataZakonczenia, new { @class = "datetimepicker form-control", id = "datetimepicker" })
+                @Html.ValidationMessageFor(model => model.DataZakonczenia)
+            </div>
+        </div>
+
+        <hr />
+        <div>
+            <input type="submit" value="Zapisz" class="btn btnSave" />
+        </div>
+        <div>
+            <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index", new { Style = "color:white" })</div>
+        </div>
+
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+              rel="stylesheet" />
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+              rel="stylesheet" />
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+              rel="stylesheet" />
+
+    </div>}
+
+
+    </div>
+</div>
+
+<script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
+<script src="~/Content/script/jquery.datetimepicker.full.js"></script>
+<script src="~/Content/script/jquery.datetimepicker.full.js"></script>
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+
+<script type="text/javascript">
+                                    var editor = CKEDITOR.instances['Tresc'];
+    if (editor) { editor.destroy(true); }
+    CKEDITOR.replace('Tresc', {
+        enterMode: CKEDITOR.ENTER_BR,
+    });
+</script>
+
+
+
+
+<script type="text/javascript">
+    jQuery.datetimepicker.setLocale('pl');
+
+    jQuery('#datetimepicker').datetimepicker({
+        format: 'd.m.Y H:i',
+        step: 5,
+        lang: 'pl'
+    });
+</script>
+
+
+@*<script>
+        $(document).ready(function () {
+            $('.datetimepicker').datetimepicker({
+                format: ('DD.MM.YYYY HH:mm:ss')
+            });
+        });
+
+    </script>*@
+

@@ -1,0 +1,193 @@
+﻿@*@model IEnumerable<Helpdesk.Models.Zgloszenie>*@
+@model PagedList.IPagedList<Helpdesk.Models.Zgloszenie>
+@using PagedList.Mvc;
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<div class="col-8">
+    @{ ViewBag.Title = "Index"; }
+    <h2 class="">Zgłoszenia</h2>
+    @if (TempData["Potwierdzenie"] != null)
+    {
+<div class="alert alert-info" role="alert">
+    @TempData["Potwierdzenie"]
+</div>}
+    <br />
+    <div class="btn btnNewApplication col-md-3"><i class="fas fa-plus"></i>@Html.ActionLink("Utwórz nowe zgłoszenie", "Create")</div>
+</div>
+<div class="container">
+    <hr />
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            FILTRY
+        </a>
+        <div>
+            <ul class="">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet }))
+            </ul>
+        </div>
+
+    </p>
+    <div class="collapse" id="collapseExample">
+        <!--wyszukiwarka-->
+        <div class="col-md-12" style="align-content:flex-start">
+            <h4>Flitrowanie:</h4>
+            @using (Html.BeginForm("Index", "Zgloszenie", FormMethod.Get, new { @class = "form-control" }))
+            {
+                <label>Kategoria:</label>
+                @Html.DropDownList("Kategoria", null, "--wszystkie--", htmlAttributes: new { @class = "form-control" })
+                <label>Status:</label>
+                @Html.DropDownList("Status", null, "--wszystkie--", htmlAttributes: new { @class = "form-control" })
+                <label>Priorytet:</label>
+                @Html.DropDownList("Priorytet", null, "--wszystkie--", htmlAttributes: new { @class = "form-control" }) if (User.IsInRole("Admin") || User.IsInRole("Pracownik") || User.IsInRole("Kierownik"))
+                {
+                <label> Zgłaszający:</label>
+                @Html.DropDownList("Uzytkownik", null, "--wszyscy--", htmlAttributes: new { @class = "form-control" }) }
+                <!--<label> Data utworzenia:</label>--> @*@Html.TextBox("data", null, "--wszyscy--", htmlAttributes: new { @class = "datefield", type = "date" }) *@
+                <!--@Html.TextBox("data", null, "--wszystkie--", new { @class = "datetimepicker form-control", id = "datetimepicker" })-->
+              <br />
+              <label>Szukana fraza:</label>
+              @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "col-10" })
+              <br />
+              <button type="submit" value="Search" class="btn btn-primary"> Filtruj</button>}
+        </div>
+    </div>
+    <br />
+</div>
+
+<div style="overflow-x:auto;">
+    <table class=" table col-auto table-hover">
+        <tr class="">
+            <th class="tableFilters">
+                @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.NameSortParm1, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+            <th class="tableFilters">
+                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.NameSortParm8, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+
+            <th class="tableFilters">
+                @Html.ActionLink("Priorytet", "Index", new { sortOrder = ViewBag.NameSortParm9, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+            <th class="tableFilters">
+                @Html.ActionLink("Kategoria", "Index", new { sortOrder = ViewBag.NameSortParm2, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+
+            <th class="tableFilters">
+                @Html.ActionLink("Tytuł", "Index", new { sortOrder = ViewBag.NameSortParm3, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+
+            <th class="tableFilters">
+                @Html.ActionLink("Zgłaszający/a:", "Index", new { sortOrder = ViewBag.NameSortParm4, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+            <th class="tableFilters">
+                @Html.ActionLink("Obsługujący", "Index", new { sortOrder = ViewBag.NameSortParm10, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+            <th class="tableFilters">
+                @Html.ActionLink("Data Dodania", "Index", new { sortOrder = ViewBag.NameSortParm5, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+            <th class="tableFilters">
+                @Html.ActionLink("Data aktualizacji", "Index", new { sortOrder = ViewBag.NameSortParm6, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+            </th>
+
+
+            @*<th class="tableFilters">
+            @Html.ActionLink("Data zakończenia", "Index", new { sortOrder = ViewBag.NameSortParm7, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Priorytet = ViewBag.IdPriotytet })
+        </th>*@
+
+        </tr>
+        @{int i = 0;}
+        @foreach (var item in Model)
+        {
+    <tr class=" " style="table-layout: fixed; max-height:20px;">
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.IdZgloszenia)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Status.NazwaStatusu)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Priorytet.NazwaPriorytetu)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Kategoria.NazwaKategorii)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Temat)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Uzytkownik.PelneImie)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Pracownik.PelneImie)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.DataDodania)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.DataAktualizacji)
+        </td>
+        @*<td class="applicationList">
+            @Html.DisplayFor(modelItem => item.DataZakonczenia)
+        </td>*@
+
+
+        <td class="applicationList col-1">
+            <p class="btn btn-primary" data-bs-toggle="collapse" href="#collapseOne_@i" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Opcje
+            </p>
+            <div class="collapse" id="collapseOne_@i">
+                <div class="btn btnDetails">
+                    @Html.ActionLink("Szczegóły", "Details", new { id = item.IdZgloszenia })
+                </div>
+
+                @if (User.IsInRole("Admin") || (User.IsInRole("Kierownik") || (User.IsInRole("Pracownik"))))
+                {
+                 <div class="btn btnEdit">
+                     @Html.ActionLink("Edytuj", "Edit", new { id = item.IdZgloszenia })
+                 </div>
+
+                 <div class="btn btnDel">
+                     @Html.ActionLink("Anuluj", "Delete", new { id = item.IdZgloszenia })
+                 </div>}
+            </div>
+        </td>
+    </tr>i++;
+            }
+    </table>
+    </div>
+    <div>
+        <br />
+
+        Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, Kategoria = ViewBag.KategoriaID, Uzytkownik = ViewBag.UzytkownikID, Status = ViewBag.StatusID, Data = ViewBag.DataID, Okres = ViewBag.PriorytetID }))
+
+
+    </div>
+    <br />
+
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jquery.datetimepicker.js" />
+    <script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
+    <script src="~/Content/script/jquery.datetimepicker.full.js"></script>
+    <link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        var editor = CKEDITOR.instances['Tresc'];
+
+
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace('Tresc', {
+            enterMode: CKEDITOR.ENTER_BR,
+        });</script>
+
+
+    <script type="text/javascript">
+        jQuery.datetimepicker.setLocale('pl');
+
+        jQuery('#datetimepicker').datetimepicker({
+            format: 'd.m.Y',
+            step: 5,
+            lang: 'pl'
+        });</script>
+

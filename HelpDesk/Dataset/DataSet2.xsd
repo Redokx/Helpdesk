@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet2" targetNamespace="http://tempuri.org/DataSet2.xsd" xmlns:mstns="http://tempuri.org/DataSet2.xsd" xmlns="http://tempuri.org/DataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="HelpdeskConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="HelpdeskConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.HelpdeskConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="HelpdeskConnection (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT       Zgloszenie.IdZgloszenia AS Numerzgłoszenia, Zgloszenie.Temat AS Tytułzgłoszenia, Kategoria.NazwaKategorii AS Kategoriazgłoszenia, Priorytet.NazwaPriorytetu, Zgloszenie.DataDodania AS Datautworzeniazgłoszenia, 
+                         Zgloszenie.DataZakonczenia AS Datazakończeniazgłoszenia, Status.NazwaStatusu AS Status, DATEDIFF(hh, Zgloszenie.DataDodania, Zgloszenie.DataZakonczenia) AS Czaswykonaniazgłoszeniawgodzinach, DATEDIFF(mi, 
+                         Zgloszenie.DataDodania, Zgloszenie.DataZakonczenia) AS Czaswykonaniazgłoszeniawminutach, Uzytkownik.Imie, Uzytkownik.Nazwisko
+FROM            Zgloszenie INNER JOIN
+                         Status ON Zgloszenie.IdStatusu = Status.IdStatusu INNER JOIN
+                         Kategoria ON Zgloszenie.IdKategorii = Kategoria.IdKategorii INNER JOIN
+                         Priorytet ON Zgloszenie.IdPriorytet = Priorytet.IdPriorytetu RIGHT OUTER JOIN
+                         Uzytkownik ON Zgloszenie.PracownikId = Uzytkownik.Id
+WHERE        (Zgloszenie.IdStatusu = 4)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Numerzgłoszenia" DataSetColumn="Numerzgłoszenia" />
+              <Mapping SourceColumn="Tytułzgłoszenia" DataSetColumn="Tytułzgłoszenia" />
+              <Mapping SourceColumn="Kategoriazgłoszenia" DataSetColumn="Kategoriazgłoszenia" />
+              <Mapping SourceColumn="Datautworzeniazgłoszenia" DataSetColumn="Datautworzeniazgłoszenia" />
+              <Mapping SourceColumn="Datazakończeniazgłoszenia" DataSetColumn="Datazakończeniazgłoszenia" />
+              <Mapping SourceColumn="Czaswykonaniazgłoszeniawgodzinach" DataSetColumn="Czaswykonaniazgłoszeniawgodzinach" />
+              <Mapping SourceColumn="Czaswykonaniazgłoszeniawminutach" DataSetColumn="Czaswykonaniazgłoszeniawminutach" />
+              <Mapping SourceColumn="NazwaPriorytetu" DataSetColumn="NazwaPriorytetu" />
+              <Mapping SourceColumn="Imie" DataSetColumn="Imie" />
+              <Mapping SourceColumn="Nazwisko" DataSetColumn="Nazwisko" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Numerzgłoszenia" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnNumerzgłoszenia" msprop:Generator_ColumnPropNameInRow="Numerzgłoszenia" msprop:Generator_ColumnPropNameInTable="NumerzgłoszeniaColumn" msprop:Generator_UserColumnName="Numerzgłoszenia" type="xs:int" minOccurs="0" />
+              <xs:element name="Tytułzgłoszenia" msprop:Generator_ColumnVarNameInTable="columnTytułzgłoszenia" msprop:Generator_ColumnPropNameInRow="Tytułzgłoszenia" msprop:Generator_ColumnPropNameInTable="TytułzgłoszeniaColumn" msprop:Generator_UserColumnName="Tytułzgłoszenia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Kategoriazgłoszenia" msprop:Generator_ColumnVarNameInTable="columnKategoriazgłoszenia" msprop:Generator_ColumnPropNameInRow="Kategoriazgłoszenia" msprop:Generator_ColumnPropNameInTable="KategoriazgłoszeniaColumn" msprop:Generator_UserColumnName="Kategoriazgłoszenia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Datautworzeniazgłoszenia" msprop:Generator_ColumnVarNameInTable="columnDatautworzeniazgłoszenia" msprop:Generator_ColumnPropNameInRow="Datautworzeniazgłoszenia" msprop:Generator_ColumnPropNameInTable="DatautworzeniazgłoszeniaColumn" msprop:Generator_UserColumnName="Datautworzeniazgłoszenia" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Datazakończeniazgłoszenia" msprop:Generator_ColumnVarNameInTable="columnDatazakończeniazgłoszenia" msprop:Generator_ColumnPropNameInRow="Datazakończeniazgłoszenia" msprop:Generator_ColumnPropNameInTable="DatazakończeniazgłoszeniaColumn" msprop:Generator_UserColumnName="Datazakończeniazgłoszenia" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Czaswykonaniazgłoszeniawgodzinach" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCzaswykonaniazgłoszeniawgodzinach" msprop:Generator_ColumnPropNameInRow="Czaswykonaniazgłoszeniawgodzinach" msprop:Generator_ColumnPropNameInTable="CzaswykonaniazgłoszeniawgodzinachColumn" msprop:Generator_UserColumnName="Czaswykonaniazgłoszeniawgodzinach" type="xs:int" minOccurs="0" />
+              <xs:element name="Czaswykonaniazgłoszeniawminutach" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCzaswykonaniazgłoszeniawminutach" msprop:Generator_ColumnPropNameInRow="Czaswykonaniazgłoszeniawminutach" msprop:Generator_ColumnPropNameInTable="CzaswykonaniazgłoszeniawminutachColumn" msprop:Generator_UserColumnName="Czaswykonaniazgłoszeniawminutach" type="xs:int" minOccurs="0" />
+              <xs:element name="NazwaPriorytetu" msprop:Generator_ColumnVarNameInTable="columnNazwaPriorytetu" msprop:Generator_ColumnPropNameInRow="NazwaPriorytetu" msprop:Generator_ColumnPropNameInTable="NazwaPriorytetuColumn" msprop:Generator_UserColumnName="NazwaPriorytetu" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Imie" msprop:Generator_ColumnVarNameInTable="columnImie" msprop:Generator_ColumnPropNameInRow="Imie" msprop:Generator_ColumnPropNameInTable="ImieColumn" msprop:Generator_UserColumnName="Imie" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nazwisko" msprop:Generator_ColumnVarNameInTable="columnNazwisko" msprop:Generator_ColumnPropNameInRow="Nazwisko" msprop:Generator_ColumnPropNameInTable="NazwiskoColumn" msprop:Generator_UserColumnName="Nazwisko" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:field xpath="mstns:Numerzgłoszenia" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

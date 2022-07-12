@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Helpdesk.Models.Komentarz>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2 class="headerInfo">Komentarze</h2>
+    @if (TempData["Potwierdzenie"] != null)
+    {
+<div class="alert alert-info" role="alert">
+    @TempData["Potwierdzenie"]
+</div>}
+    <hr />
+
+    <table class="table col-auto table-hover">
+        <tr>
+            <th class="tableFilters">
+                @Html.DisplayNameFor(model => model.IdKomentarza)
+            </th>
+            <th class="tableFilters">
+                Imie i nazwisko
+            </th>
+            <th class="tableFilters">
+                Id zgłoszenia
+            </th>
+            <th class="tableFilters">
+                @Html.DisplayNameFor(model => model.Zgloszenie.Temat)
+            </th>
+            <th class="tableFilters">
+                @Html.DisplayNameFor(model => model.DataDodania)
+            </th>
+            <th class="tableFilters">
+                @Html.DisplayNameFor(model => model.Tresc)
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.IdKomentarza)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Uzytkownik.PelneImie)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Zgloszenie.IdZgloszenia)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Zgloszenie.Temat)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.DataDodania)
+        </td>
+        <td class="applicationList">
+            @Html.DisplayFor(modelItem => item.Tresc)
+        </td>
+
+
+
+        <td width="10%" class="applicationList">
+            <div class="btn btnDetails">@Html.ActionLink("Szczegóły", "Details", new { id = item.IdKomentarza })</div>
+            <div class="btn btnEdit">@Html.ActionLink("Edycja", "Edit", new { id = item.IdKomentarza })</div>
+            <div class="btn btnDelete">@Html.ActionLink("Usuń", "Delete", new { id = item.IdKomentarza })</div>
+        </td>
+    </tr>}
+
+    </table>
+</div>

@@ -1,0 +1,60 @@
+﻿@model Helpdesk.Models.Kategoria
+
+@{ ViewBag.Title = "Delete"; }
+@if (ViewBag.Blad == true)
+{
+<div class="container">
+    <div class="alert alert-danger marg-gorny" role="alert">
+        Wystąpił błąd podczas usuwania kategorii.<br />
+        Próbujesz skasować kategorię posiadajacą zgłoszenia.<br />
+        Usuń lub zmień zgłoszenia z tą kategorią, aby ją usunąć na stałe.
+    </div>
+    <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+</div>
+    }
+    else
+    {
+    <div class="container">
+        <h2 class="headerInfo">Usuwanie kategorii</h2>
+        <br /><br />
+        <h3 class="deleteAlert">
+            Czy na pewno chcesz usunąć kategorię nr
+            @Model.IdKategorii?
+        </h3>
+        @if (ViewBag.Blad == true)
+        {
+<div class="alert alert-danger" role="alert">
+    @ViewBag.Komunikat
+</div>}
+        <div>
+
+            <hr />
+            <ul class="detailsList">
+                @Html.DisplayNameFor(model => model.NazwaKategorii)
+            </ul>
+
+            <ul>
+                @Html.DisplayFor(model => model.NazwaKategorii)
+            </ul>
+
+            <ul class="detailsList">
+                @Html.DisplayNameFor(model => model.OpisKategorii)
+            </ul>
+
+            <ul>
+                @Html.DisplayFor(model => model.OpisKategorii)
+            </ul>
+            <hr />
+            @using (Html.BeginForm())
+            {
+@Html.AntiForgeryToken()
+
+                    <div>
+                        <input type="submit" value="Usuń" class="btn btnDel" />
+                    </div>
+
+                                        <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>}
+
+        </div>
+    </div>
+    }

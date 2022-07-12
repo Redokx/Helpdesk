@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="helpdeskSQLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="IdKategorii" />
+          </Key>
+          <Property Name="IdKategorii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaKategorii" Type="nvarchar(max)" />
+          <Property Name="OpisKategorii" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Komentarz">
+          <Key>
+            <PropertyRef Name="IdKomentarza" />
+          </Key>
+          <Property Name="IdKomentarza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tresc" Type="nvarchar(max)" />
+          <Property Name="DataDodania" Type="datetime" Nullable="false" />
+          <Property Name="IdZgloszenia" Type="int" Nullable="false" />
+          <Property Name="UzytkownikId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Priorytet">
+          <Key>
+            <PropertyRef Name="IdPriorytetu" />
+          </Key>
+          <Property Name="IdPriorytetu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaPriorytetu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatusu" />
+          </Key>
+          <Property Name="IdStatusu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaStatusu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Uzytkownik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="20" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" />
+          <Property Name="Foto" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Zgloszenie">
+          <Key>
+            <PropertyRef Name="IdZgloszenia" />
+          </Key>
+          <Property Name="IdZgloszenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Temat" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Tresc" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Grafika" Type="nvarchar" MaxLength="128" />
+          <Property Name="Plik" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdPriorytet" Type="int" Nullable="false" />
+          <Property Name="IdKategorii" Type="int" Nullable="false" />
+          <Property Name="IdStatusu" Type="int" Nullable="false" />
+          <Property Name="DataDodania" Type="datetime" Nullable="false" />
+          <Property Name="DataZakonczenia" Type="datetime" Nullable="false" />
+          <Property Name="DataAktualizacji" Type="datetime" Nullable="false" />
+          <Property Name="UzytkownikId" Type="nvarchar" MaxLength="128" />
+          <Property Name="PracownikId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId">
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="1" />
+          <End Role="Komentarz" Type="Self.Komentarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Komentarz">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia">
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="1" />
+          <End Role="Komentarz" Type="Self.Komentarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zgloszenie">
+              <PropertyRef Name="IdZgloszenia" />
+            </Principal>
+            <Dependent Role="Komentarz">
+              <PropertyRef Name="IdZgloszenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Uzytkownik_dbo_AspNetUsers_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii">
+          <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="IdKategorii" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="IdKategorii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet">
+          <End Role="Priorytet" Type="Self.Priorytet" Multiplicity="1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priorytet">
+              <PropertyRef Name="IdPriorytetu" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="IdPriorytet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Status_IdStatusu">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatusu" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="IdStatusu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId">
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="0..1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="PracownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId">
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="0..1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="helpdeskSQLModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Komentarz" EntityType="Self.Komentarz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Priorytet" EntityType="Self.Priorytet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uzytkownik" EntityType="Self.Uzytkownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zgloszenie" EntityType="Self.Zgloszenie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId" Association="Self.FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId">
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+            <End Role="Komentarz" EntitySet="Komentarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia" Association="Self.FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia">
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+            <End Role="Komentarz" EntitySet="Komentarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Uzytkownik_dbo_AspNetUsers_Id" Association="Self.FK_dbo_Uzytkownik_dbo_AspNetUsers_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii" Association="Self.FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii">
+            <End Role="Kategoria" EntitySet="Kategoria" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet" Association="Self.FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet">
+            <End Role="Priorytet" EntitySet="Priorytet" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Status_IdStatusu" Association="Self.FK_dbo_Zgloszenie_dbo_Status_IdStatusu">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId" Association="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId">
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId" Association="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId">
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="helpdeskSQLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Uzytkownik" Relationship="Self.FK_dbo_Uzytkownik_dbo_AspNetUsers_Id" FromRole="AspNetUsers" ToRole="Uzytkownik" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="IdKategorii" />
+          </Key>
+          <Property Name="IdKategorii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaKategorii" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpisKategorii" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zgloszenie" Relationship="Self.FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii" FromRole="Kategoria" ToRole="Zgloszenie" />
+        </EntityType>
+        <EntityType Name="Komentarz">
+          <Key>
+            <PropertyRef Name="IdKomentarza" />
+          </Key>
+          <Property Name="IdKomentarza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tresc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataDodania" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdZgloszenia" Type="Int32" Nullable="false" />
+          <Property Name="UzytkownikId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Uzytkownik" Relationship="Self.FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId" FromRole="Komentarz" ToRole="Uzytkownik" />
+          <NavigationProperty Name="Zgloszenie" Relationship="Self.FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia" FromRole="Komentarz" ToRole="Zgloszenie" />
+        </EntityType>
+        <EntityType Name="Priorytet">
+          <Key>
+            <PropertyRef Name="IdPriorytetu" />
+          </Key>
+          <Property Name="IdPriorytetu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaPriorytetu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zgloszenie" Relationship="Self.FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet" FromRole="Priorytet" ToRole="Zgloszenie" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatusu" />
+          </Key>
+          <Property Name="IdStatusu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaStatusu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zgloszenie" Relationship="Self.FK_dbo_Zgloszenie_dbo_Status_IdStatusu" FromRole="Status" ToRole="Zgloszenie" />
+        </EntityType>
+        <EntityType Name="Uzytkownik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imie" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Foto" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_Uzytkownik_dbo_AspNetUsers_Id" FromRole="Uzytkownik" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Komentarz" Relationship="Self.FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId" FromRole="Uzytkownik" ToRole="Komentarz" />
+          <NavigationProperty Name="Zgloszenie" Relationship="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId" FromRole="Uzytkownik" ToRole="Zgloszenie" />
+          <NavigationProperty Name="Zgloszenie1" Relationship="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId" FromRole="Uzytkownik" ToRole="Zgloszenie" />
+        </EntityType>
+        <EntityType Name="Zgloszenie">
+          <Key>
+            <PropertyRef Name="IdZgloszenia" />
+          </Key>
+          <Property Name="IdZgloszenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Temat" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tresc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Grafika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Plik" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdPriorytet" Type="Int32" Nullable="false" />
+          <Property Name="IdKategorii" Type="Int32" Nullable="false" />
+          <Property Name="IdStatusu" Type="Int32" Nullable="false" />
+          <Property Name="DataDodania" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataZakonczenia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataAktualizacji" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UzytkownikId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PracownikId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kategoria" Relationship="Self.FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii" FromRole="Zgloszenie" ToRole="Kategoria" />
+          <NavigationProperty Name="Komentarz" Relationship="Self.FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia" FromRole="Zgloszenie" ToRole="Komentarz" />
+          <NavigationProperty Name="Priorytet" Relationship="Self.FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet" FromRole="Zgloszenie" ToRole="Priorytet" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_dbo_Zgloszenie_dbo_Status_IdStatusu" FromRole="Zgloszenie" ToRole="Status" />
+          <NavigationProperty Name="Uzytkownik" Relationship="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId" FromRole="Zgloszenie" ToRole="Uzytkownik" />
+          <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId" FromRole="Zgloszenie" ToRole="Uzytkownik" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Uzytkownik_dbo_AspNetUsers_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii">
+          <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="IdKategorii" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="IdKategorii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId">
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="1" />
+          <End Role="Komentarz" Type="Self.Komentarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Komentarz">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia">
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="1" />
+          <End Role="Komentarz" Type="Self.Komentarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zgloszenie">
+              <PropertyRef Name="IdZgloszenia" />
+            </Principal>
+            <Dependent Role="Komentarz">
+              <PropertyRef Name="IdZgloszenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet">
+          <End Role="Priorytet" Type="Self.Priorytet" Multiplicity="1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priorytet">
+              <PropertyRef Name="IdPriorytetu" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="IdPriorytet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Status_IdStatusu">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatusu" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="IdStatusu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId">
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="0..1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="PracownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId">
+          <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="0..1" />
+          <End Role="Zgloszenie" Type="Self.Zgloszenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zgloszenie">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="helpdeskSQLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" />
+          <EntitySet Name="Komentarz" EntityType="Self.Komentarz" />
+          <EntitySet Name="Priorytet" EntityType="Self.Priorytet" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Uzytkownik" EntityType="Self.Uzytkownik" />
+          <EntitySet Name="Zgloszenie" EntityType="Self.Zgloszenie" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Uzytkownik_dbo_AspNetUsers_Id" Association="Self.FK_dbo_Uzytkownik_dbo_AspNetUsers_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii" Association="Self.FK_dbo_Zgloszenie_dbo_Kategoria_IdKategorii">
+            <End Role="Kategoria" EntitySet="Kategoria" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId" Association="Self.FK_dbo_Komentarz_dbo_Uzytkownik_UzytkownikId">
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+            <End Role="Komentarz" EntitySet="Komentarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia" Association="Self.FK_dbo_Komentarz_dbo_Zgloszenie_IdZgloszenia">
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+            <End Role="Komentarz" EntitySet="Komentarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet" Association="Self.FK_dbo_Zgloszenie_dbo_Priorytet_IdPriorytet">
+            <End Role="Priorytet" EntitySet="Priorytet" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Status_IdStatusu" Association="Self.FK_dbo_Zgloszenie_dbo_Status_IdStatusu">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId" Association="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_PracownikId">
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId" Association="Self.FK_dbo_Zgloszenie_dbo_Uzytkownik_UzytkownikId">
+            <End Role="Uzytkownik" EntitySet="Uzytkownik" />
+            <End Role="Zgloszenie" EntitySet="Zgloszenie" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="helpdeskSQLModelStoreContainer" CdmEntityContainer="helpdeskSQLEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoria">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.Kategoria">
+              <MappingFragment StoreEntitySet="Kategoria">
+                <ScalarProperty Name="IdKategorii" ColumnName="IdKategorii" />
+                <ScalarProperty Name="NazwaKategorii" ColumnName="NazwaKategorii" />
+                <ScalarProperty Name="OpisKategorii" ColumnName="OpisKategorii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Komentarz">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.Komentarz">
+              <MappingFragment StoreEntitySet="Komentarz">
+                <ScalarProperty Name="IdKomentarza" ColumnName="IdKomentarza" />
+                <ScalarProperty Name="Tresc" ColumnName="Tresc" />
+                <ScalarProperty Name="DataDodania" ColumnName="DataDodania" />
+                <ScalarProperty Name="IdZgloszenia" ColumnName="IdZgloszenia" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priorytet">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.Priorytet">
+              <MappingFragment StoreEntitySet="Priorytet">
+                <ScalarProperty Name="IdPriorytetu" ColumnName="IdPriorytetu" />
+                <ScalarProperty Name="NazwaPriorytetu" ColumnName="NazwaPriorytetu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="IdStatusu" ColumnName="IdStatusu" />
+                <ScalarProperty Name="NazwaStatusu" ColumnName="NazwaStatusu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uzytkownik">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.Uzytkownik">
+              <MappingFragment StoreEntitySet="Uzytkownik">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zgloszenie">
+            <EntityTypeMapping TypeName="helpdeskSQLModel.Zgloszenie">
+              <MappingFragment StoreEntitySet="Zgloszenie">
+                <ScalarProperty Name="IdZgloszenia" ColumnName="IdZgloszenia" />
+                <ScalarProperty Name="Temat" ColumnName="Temat" />
+                <ScalarProperty Name="Tresc" ColumnName="Tresc" />
+                <ScalarProperty Name="Grafika" ColumnName="Grafika" />
+                <ScalarProperty Name="Plik" ColumnName="Plik" />
+                <ScalarProperty Name="IdPriorytet" ColumnName="IdPriorytet" />
+                <ScalarProperty Name="IdKategorii" ColumnName="IdKategorii" />
+                <ScalarProperty Name="IdStatusu" ColumnName="IdStatusu" />
+                <ScalarProperty Name="DataDodania" ColumnName="DataDodania" />
+                <ScalarProperty Name="DataZakonczenia" ColumnName="DataZakonczenia" />
+                <ScalarProperty Name="DataAktualizacji" ColumnName="DataAktualizacji" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="PracownikId" ColumnName="PracownikId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="helpdeskSQLModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

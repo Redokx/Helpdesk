@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Helpdesk.Models.Kategoria>
+
+@{
+    ViewBag.Title = "Lista kategorii";
+}
+
+<div class="container">
+    <h2 class="headerInfo">Kategorie</h2>
+    <hr />
+    @if (TempData["Potwierdzenie"] != null)
+    {
+<div class="alert alert-info" role="alert">
+    @TempData["Potwierdzenie"]
+</div>}
+    <div class="btn btnNewApplication">
+        <i class="fas fa-plus"></i>@Html.ActionLink("Dodaj nową kategorię", "Create")
+    </div>
+    <br />
+    <table class="col-auto table-hover">
+        <br />
+        <tr>
+            <th class="tableFilters">
+                @Html.DisplayNameFor(model => model.NazwaKategorii)
+            </th>
+
+            <th class="tableFilters">
+                @Html.DisplayNameFor(model => model.OpisKategorii)
+            </th>
+
+            <th class="tableFilters"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+<tr>
+    <td class="applicationList">
+        @Html.DisplayFor(modelItem => item.NazwaKategorii)
+    </td>
+
+    <td class="applicationList">
+        @Html.DisplayFor(modelItem => item.OpisKategorii)
+    </td>
+
+    <td width="10%" class="applicationList">
+        <div class="btn btnDetails"><i>&nbsp</i>@Html.ActionLink("Szczegóły", "Details", new { id = item.IdKategorii })</div>
+        @if (User.IsInRole("Admin"))
+        {
+<div class="btn btnEdit"><i></i>@Html.ActionLink("Edycja", "Edit", new { id = item.IdKategorii })</div>
+                    <div class="btn btnDelete"><i>&nbsp</i>@Html.ActionLink("Usuń", "Delete", new { id = item.IdKategorii })</div>}
+    </td>
+</tr>            }
+
+    </table>
+</div>

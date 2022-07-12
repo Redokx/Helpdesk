@@ -1,0 +1,25 @@
+﻿@model Helpdesk.Models.Komentarz
+
+@using (Html.BeginForm("EdytujKomentarz", "Komentarz", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="IdKomentarza" name="IdKomentarza" value="@ViewBag.IdKomentarza">
+    <h4>Edycja komentarza</h4>
+    @ViewBag.Tresc;
+    @Html.EditorFor(model => model.Tresc, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.Tresc, "", new { @class = "textdanger" })
+    <br />
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zapisz" class="btn btn-success" />
+                
+
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

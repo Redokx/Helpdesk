@@ -1,0 +1,113 @@
+﻿@model Helpdesk.Models.Zgloszenie
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container">
+    <h2 class="headerInfo">Anulowanie zgłoszenia ID: @Html.DisplayFor(model => model.IdZgloszenia)</h2>
+    <br /><br />
+    @if (ViewBag.Blad == true)
+    {
+<div class="alert alert-danger" role="alert">
+    @ViewBag.Komunikat
+</div>}
+
+    <h3 class="deleteAlert">Czy na pewno chcesz anulować to zgłoszenie?</h3>
+    <div>
+        <hr />
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.PracownikId) pracownik
+        </ul>
+
+        <ul class="detailsListInfo">
+            @if (Model.PracownikId == null)
+            {
+    <a>&nbsp</a> }
+                else
+                {
+    @Html.DisplayFor(model => model.Pracownik.PelneImie)}
+        </ul>
+        <br />
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Uzytkownik)
+        </ul>
+        <ul>
+            @Html.DisplayFor(model => model.Uzytkownik.PelneImie)
+        </ul>
+        <br />
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Status)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Status.NazwaStatusu)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Temat)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Temat)
+        </ul>
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Kategoria.NazwaKategorii)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.Kategoria.NazwaKategorii)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.DataDodania)
+        </ul>
+
+        <ul>
+            @Html.DisplayFor(model => model.DataDodania)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Uzytkownik.Email) kontaktowy
+        </ul>
+
+        <ul>
+
+            @Html.DisplayFor(model => model.Uzytkownik.Email)
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Grafika)
+        </ul>
+
+        <ul>
+
+            @if (Model.Grafika != null)
+            {
+    <img src="@Url.Content("~/Grafika/Mini/" +Model.Grafika)" class="img-responsive" /> }
+                else
+                {
+    <a>&nbsp</a>}
+        </ul>
+
+        <ul class="detailsList">
+            @Html.DisplayNameFor(model => model.Tresc)
+        </ul>
+        <ul>
+            @Html.Raw(Model.Tresc)
+        </ul>
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Potwierdzam" class="btn btnDel" />
+
+                    </div>
+                                    <div>
+                                        <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+                                    </div>}
+        <br />
+    </div>
+</div>

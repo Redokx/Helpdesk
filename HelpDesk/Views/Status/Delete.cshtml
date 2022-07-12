@@ -1,0 +1,42 @@
+﻿@model Helpdesk.Models.Status
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="headerInfo">Usuwanie statusu</h2><br /><br />
+        <div>
+            <h3 class="deleteAlert">Czy na pewno chcesz usunąć ten status?</h3>
+            <hr />
+            <dl class="dl-horizontal">
+                <ul class="detailsList">
+                    @Html.DisplayNameFor(model => model.NazwaStatusu)
+                </ul>
+
+                <ul>
+                    @Html.DisplayFor(model => model.NazwaStatusu)
+                </ul>
+            </dl>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div>
+                    <input type="submit" value="Usuń" class="btn btnDel" />
+                </div>
+                <div class="btn btnReturn">@Html.ActionLink("Powrót do listy", "Index")</div>
+            }
+        </div>
+    </div>
+</body>
+</html>
