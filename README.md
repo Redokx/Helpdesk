@@ -4,7 +4,7 @@ Aplikacja opracowana w ASP.NET Framework 4.7.2 MVC
 
 Pełny opis aplikacji znajduję się w pliku "Opis aplikacji.docx"
 
-W celu uruchomienia aplikacji należy zmienić:
+W celu uruchomienia aplikacji należy zmienić:	
 -wszystkie wystąpietnia "insertEmailAddress@gmail.com" w web.config oraz "pomoc@insertEmailAddress.pl" i "smtp-insertEmailAddress.pl" w EmailController.cs
 -w NUGET należy wykonać polecenie 'update-database' w celu utworzenie bazy danych
 -logowanie na konto admina, Login:admin , hasło:Helpdesk1!
